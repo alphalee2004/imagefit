@@ -6,7 +6,6 @@ const BASE_URL = process.env.E2E_URL ?? 'http://localhost:3000';
 const ASSETS = '/tmp/imagefit-qa';
 const PERF = '/tmp/imagefit-perf';
 
-const browser = await chromium.launch({ executablePath: CHROME_PATH, headless: true });
 const results = [];
 
 async function uploadAndOptimize({
@@ -20,6 +19,7 @@ async function uploadAndOptimize({
   cancelAfterMs = null,
   assertNoGrow = false,
 }) {
+  const browser = await chromium.launch({ executablePath: CHROME_PATH, headless: true });
   const page = await browser.newPage({ viewport: mobile ? { width: 390, height: 844 } : { width: 1280, height: 900 } });
   const pageErrors = [];
   page.on('pageerror', (error) => pageErrors.push(error.message));
@@ -49,6 +49,7 @@ async function uploadAndOptimize({
       durationMs: Date.now() - startedAt,
     });
     await page.close();
+    await browser.close();
     return;
   }
 
@@ -72,6 +73,7 @@ async function uploadAndOptimize({
       });
     }
     await page.close();
+    await browser.close();
     return;
   }
 
@@ -109,21 +111,18 @@ async function uploadAndOptimize({
     pageErrors,
   });
   await page.close();
-}
-
-try {
-  await uploadAndOptimize({ name: 'JPG to 100KB', file: `${ASSETS}/qa-medium.jpg`, preset: '100 KB' });
-  await uploadAndOptimize({ name: 'JPG to 200KB', file: `${ASSETS}/qa-medium.jpg` });
-  await uploadAndOptimize({ name: 'PNG to 100KB', file: `${ASSETS}/qa-medium.png`, preset: '100 KB', timeout: 240_000 });
-  await uploadAndOptimize({ name: 'WebP to 100KB', file: `${ASSETS}/qa-medium.webp`, preset: '100 KB' });
-  await uploadAndOptimize({ name: 'Already under 100KB', file: `${ASSETS}/qa-small.jpg`, preset: '100 KB', assertNoGrow: true });
-  await uploadAndOptimize({ name: 'Huge 48MP to 200KB', file: `${PERF}/perf-48mp.jpg`, timeout: 240_000 });
-  await uploadAndOptimize({ name: 'Impossible 1KB target', file: `${PERF}/perf-48mp.jpg`, preset: null, customKb: 1, expectError: true, timeout: 60_000 });
-  await uploadAndOptimize({ name: 'Cancel large job', file: `${PERF}/perf-48mp.jpg`, cancelAfterMs: 300 });
-  await uploadAndOptimize({ name: 'Mobile JPG to 100KB', file: `${ASSETS}/qa-medium.jpg`, preset: '100 KB', mobile: true });
-} finally {
   await browser.close();
 }
+
+await uploadAndOptimize({ name: 'JPG to 100KB', file: `${ASSETS}/qa-medium.jpg`, preset: '100 KB' });
+await uploadAndOptimize({ name: 'JPG to 200KB', file: `${ASSETS}/qa-medium.jpg` });
+await uploadAndOptimize({ name: 'PNG to 100KB', file: `${ASSETS}/qa-medium.png`, preset: '100 KB', timeout: 240_000 });
+await uploadAndOptimize({ name: 'WebP to 100KB', file: `${ASSETS}/qa-medium.webp`, preset: '100 KB' });
+await uploadAndOptimize({ name: 'Already under 100KB', file: `${ASSETS}/qa-small.jpg`, preset: '100 KB', assertNoGrow: true });
+await uploadAndOptimize({ name: 'Huge 48MP to 200KB', file: `${PERF}/perf-48mp.jpg`, timeout: 240_000 });
+await uploadAndOptimize({ name: 'Impossible 1KB target', file: `${PERF}/perf-48mp.jpg`, preset: null, customKb: 1, expectError: true, timeout: 60_000 });
+await uploadAndOptimize({ name: 'Cancel large job', file: `${PERF}/perf-48mp.jpg`, cancelAfterMs: 300 });
+await uploadAndOptimize({ name: 'Mobile JPG to 100KB', file: `${ASSETS}/qa-medium.jpg`, preset: '100 KB', mobile: true });
 
 const passed = results.every((row) => row.passed);
 console.log(JSON.stringify({ passed, results }, null, 2));

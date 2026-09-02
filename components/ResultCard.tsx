@@ -3,21 +3,25 @@
 import { ArrowRight, Download, RefreshCw } from 'lucide-react';
 import type { OptimizationResult } from '@/engine/types';
 import type { SelectedImage } from '@/hooks/useImageOptimizer';
+import { buildChangeSummary } from '@/lib/changeSummary';
 import { formatLabel } from '@/lib/toolConfig';
 import { formatBytes, savingsPercent } from '@/lib/utils';
 
 export default function ResultCard({
   original,
   result,
+  edited = false,
   onDownload,
   onReset,
 }: {
   original: SelectedImage;
   result: OptimizationResult;
+  edited?: boolean;
   onDownload: () => void;
   onReset: () => void;
 }) {
   const saved = savingsPercent(original.size, result.outputSize);
+  const summary = buildChangeSummary(original, result, edited);
 
   return (
     <div className="mt-6 rounded-xl border border-gray-200 bg-white p-5 sm:p-6">
@@ -42,6 +46,11 @@ export default function ResultCard({
         <span className="inline-flex w-fit items-center rounded-full bg-teal-50 px-3 py-1 text-sm font-semibold text-teal-700">
           {saved}% smaller
         </span>
+      </div>
+      <div className="mt-4 space-y-1 rounded-lg bg-gray-50 p-3 text-xs text-gray-600">
+        {summary.map((line) => (
+          <p key={line}>{line}</p>
+        ))}
       </div>
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
         <button

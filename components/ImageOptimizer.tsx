@@ -300,6 +300,7 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
           <ResultCard
             original={image}
             result={result}
+            edited={transform !== null}
             onDownload={handleDownload}
             onReset={optimizer.reset}
           />
