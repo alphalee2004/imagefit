@@ -1,7 +1,7 @@
 import ImageOptimizer from '@/components/ImageOptimizer';
 import { FaqSection, HowItWorks, RelatedTools, WhyUse } from '@/components/SeoSections';
 import JsonLd from '@/components/JsonLd';
-import { faqPageSchema } from '@/lib/seo';
+import { breadcrumbSchema, faqPageSchema } from '@/lib/seo';
 import { TOOL_PAGES, type RouteKey } from '@/lib/toolPages';
 
 export default function ToolPage({ routeKey }: { routeKey: RouteKey }) {
@@ -19,6 +19,7 @@ export default function ToolPage({ routeKey }: { routeKey: RouteKey }) {
       <WhyUse points={data.whyUse} />
       <FaqSection items={data.faq} />
       <RelatedTools items={data.related} />
+      <JsonLd data={breadcrumbSchema(data.h1, data.path)} />
       <JsonLd data={faqPageSchema(data.faq)} />
     </main>
   );

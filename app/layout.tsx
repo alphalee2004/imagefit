@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import PageViewTracker from '@/components/PageViewTracker';
-import { SITE_NAME, SITE_URL } from '@/lib/seo';
+import { OG_IMAGE_URL, SITE_NAME, SITE_URL } from '@/lib/seo';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -20,6 +20,14 @@ export const metadata: Metadata = {
     description:
       'Compress, resize and convert images to the size you need. 100% private, in your browser.',
     url: SITE_URL,
+    images: [OG_IMAGE_URL],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ImageFit - Compress Images to the Size You Need',
+    description:
+      'Compress, resize and convert images to the size you need. 100% private, in your browser.',
+    images: [OG_IMAGE_URL],
   },
   robots: { index: true, follow: true },
 };

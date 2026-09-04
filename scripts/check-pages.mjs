@@ -40,7 +40,20 @@ try {
       .locator('meta[name="description"]')
       .getAttribute('content')
       .catch(() => null);
+    const ogImage = await page
+      .locator('meta[property="og:image"]')
+      .getAttribute('content')
+      .catch(() => null);
+    const twitterCard = await page
+      .locator('meta[name="twitter:card"]')
+      .getAttribute('content')
+      .catch(() => null);
     const jsonLdCount = await page.locator('script[type="application/ld+json"]').count();
+    const breadcrumbCount = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll((scripts) =>
+        scripts.filter((script) => script.textContent?.includes('BreadcrumbList')).length,
+      );
     const h1Count = await page.locator('h1').count();
     const h1 = (await page.locator('h1').first().textContent())?.trim();
     const internalLinks = await page
@@ -64,6 +77,8 @@ try {
       Boolean(canonical) &&
       Boolean(ogTitle) &&
       Boolean(description) &&
+      Boolean(ogImage) &&
+      Boolean(twitterCard) &&
       jsonLdCount > 0 &&
       internalLinks >= 3 &&
       bodyWidth <= viewportWidth;
@@ -74,7 +89,10 @@ try {
       ogTitle,
       ogUrl,
       description,
+      ogImage,
+      twitterCard,
       jsonLdCount,
+      breadcrumbCount,
       internalLinks,
       h1,
       h1Count,
