@@ -63,7 +63,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
     path: '/compress-image',
     title: 'Compress Image Online - JPG, PNG & WebP',
     description:
-      'Compress JPG, PNG and WebP images online. Pick a target file size and ImageFit keeps the best quality that fits, right in your browser.',
+      'Compress JPG, PNG and WebP images online. Pick a target file size and Cleeke keeps the best quality that fits, right in your browser.',
     h1: 'Compress Image',
     intro:
       'Compress JPG, PNG and WebP images to the file size you need directly in your browser.',
@@ -71,7 +71,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
     howItWorks: [
       { title: 'Choose an image', text: 'Select a JPG, PNG or WebP from your device.' },
       { title: 'Pick a target size', text: 'Choose 50 KB, 100 KB, 200 KB, 500 KB, 1 MB or enter your own.' },
-      { title: 'Optimize', text: 'ImageFit searches for the best quality that fits the limit.' },
+      { title: 'Optimize', text: 'Cleeke searches for the best quality that fits the limit.' },
       { title: 'Download', text: 'Save the optimized image to your device.' },
     ],
     whyUse: [
@@ -95,12 +95,12 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
       {
         question: 'What happens if the target size is too small?',
         answer:
-          'ImageFit reports that the limit cannot be reached and tells you the smallest size that still looks usable.',
+          'Cleeke reports that the limit cannot be reached and tells you the smallest size that still looks usable.',
       },
       {
         question: 'Does compression reduce quality?',
         answer:
-          'ImageFit automatically finds the highest quality that still fits your target size, so it only removes as much quality as needed.',
+          'Cleeke automatically finds the highest quality that still fits your target size, so it only removes as much quality as needed.',
       },
     ],
     related: relatedFor('/compress-image'),
@@ -117,7 +117,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
     howItWorks: [
       { title: 'Choose an image', text: 'Select a JPG, PNG or WebP from your device.' },
       { title: 'Select 100KB', text: 'The 100KB target is selected automatically on this page.' },
-      { title: 'Optimize', text: 'ImageFit finds the best quality under 100KB.' },
+      { title: 'Optimize', text: 'Cleeke finds the best quality under 100KB.' },
       { title: 'Download', text: 'Save your image when it fits the limit.' },
     ],
     whyUse: [
@@ -132,7 +132,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
       {
         question: 'Can every image be compressed to 100KB?',
         answer:
-          'Most images can. If a 100KB file would look unusable, ImageFit tells you instead of silently destroying quality.',
+          'Most images can. If a 100KB file would look unusable, Cleeke tells you instead of silently destroying quality.',
       },
       {
         question: 'Is this really 100KB or less?',
@@ -158,7 +158,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
     howItWorks: [
       { title: 'Choose an image', text: 'Select a JPG, PNG or WebP from your device.' },
       { title: 'Select 200KB', text: 'The 200KB target is selected automatically on this page.' },
-      { title: 'Optimize', text: 'ImageFit finds the best quality under 200KB.' },
+      { title: 'Optimize', text: 'Cleeke finds the best quality under 200KB.' },
       { title: 'Download', text: 'Save your image when it fits the limit.' },
     ],
     whyUse: [
@@ -203,7 +203,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
     howItWorks: [
       { title: 'Choose an image', text: 'Select a JPG, PNG or WebP from your device.' },
       { title: 'Enter max dimensions', text: 'Set the maximum width or height in pixels.' },
-      { title: 'Optimize', text: 'ImageFit resizes without upscaling.' },
+      { title: 'Optimize', text: 'Cleeke resizes without upscaling.' },
       { title: 'Download', text: 'Save the resized image to your device.' },
     ],
     whyUse: [
@@ -218,12 +218,12 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
       {
         question: 'Will my aspect ratio change?',
         answer:
-          'No. ImageFit keeps the original aspect ratio and only reduces the image until it fits your max dimensions.',
+          'No. Cleeke keeps the original aspect ratio and only reduces the image until it fits your max dimensions.',
       },
       {
         question: 'Can I enlarge a small image?',
         answer:
-          'No. ImageFit never upscales, so a small image keeps its original size.',
+          'No. Cleeke never upscales, so a small image keeps its original size.',
       },
       {
         question: 'Do you upload my image?',
@@ -248,7 +248,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
     howItWorks: [
       { title: 'Choose an image', text: 'Select a JPG, PNG or WebP from your device.' },
       { title: 'Set max dimensions', text: 'Enter the largest width or height you can accept.' },
-      { title: 'Optimize', text: 'ImageFit resizes and compresses to stay under 100KB.' },
+      { title: 'Optimize', text: 'Cleeke resizes and compresses to stay under 100KB.' },
       { title: 'Download', text: 'Save the final image to your device.' },
     ],
     whyUse: [
@@ -268,7 +268,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
       {
         question: 'Does resizing make the image blurry?',
         answer:
-          'Downscaling usually looks sharp. ImageFit uses high-quality smoothing when it reduces dimensions.',
+          'Downscaling usually looks sharp. Cleeke uses high-quality smoothing when it reduces dimensions.',
       },
       {
         question: 'Is this really processed locally?',
@@ -294,7 +294,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
     howItWorks: [
       { title: 'Choose an image', text: 'Select a JPG, PNG or WebP from your device.' },
       { title: 'Pick output format', text: 'Choose JPG, PNG or WebP.' },
-      { title: 'Convert', text: 'ImageFit converts the image locally.' },
+      { title: 'Convert', text: 'Cleeke converts the image locally.' },
       { title: 'Download', text: 'Save the converted file to your device.' },
     ],
     whyUse: [
@@ -319,7 +319,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
       {
         question: 'Is WebP supported by my browser?',
         answer:
-          'Modern browsers all display WebP. ImageFit converts the file locally, so the output works wherever WebP is supported.',
+          'Modern browsers all display WebP. Cleeke converts the file locally, so the output works wherever WebP is supported.',
       },
     ],
     related: relatedFor('/image-converter'),
@@ -328,13 +328,13 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
 
 export const HOME_PAGE = {
   path: '/',
-  title: 'ImageFit - Compress Images to the Size You Need',
+  title: 'Cleeke - Compress Images to the Size You Need',
   description:
     'Compress, resize and convert JPG, PNG and WebP images to the size you need. Fast and private: files are processed in your browser and never uploaded.',
   howItWorks: [
     { title: 'Choose an image', text: 'Select a JPG, PNG or WebP from your device.' },
     { title: 'Pick a target size', text: 'Choose 50 KB, 100 KB, 200 KB, 500 KB, 1 MB or enter your own.' },
-    { title: 'Optimize', text: 'ImageFit searches for the best quality that fits the limit.' },
+    { title: 'Optimize', text: 'Cleeke searches for the best quality that fits the limit.' },
     { title: 'Download', text: 'Save the optimized image to your device.' },
   ],
   whyUse: [
@@ -354,15 +354,15 @@ export const HOME_PAGE = {
     {
       question: 'Which formats are supported?',
       answer:
-        'ImageFit supports JPG, PNG and WebP input and output in this version.',
+        'Cleeke supports JPG, PNG and WebP input and output in this version.',
     },
     {
       question: 'How does target-size compression work?',
       answer:
-        'ImageFit first tries the highest quality at the original resolution. If that is still too large, it reduces resolution and searches again until the file fits.',
+        'Cleeke first tries the highest quality at the original resolution. If that is still too large, it reduces resolution and searches again until the file fits.',
     },
     {
-      question: 'Is ImageFit free?',
+      question: 'Is Cleeke free?',
       answer: 'Yes. The core optimizer is free and runs entirely in your browser.',
     },
   ],

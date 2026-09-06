@@ -10,7 +10,7 @@ import {
 describe('SEO configuration', () => {
   it('uses the production domain', () => {
     expect(SITE_URL).toBe('https://cleeke.com');
-    expect(SITE_NAME).toBe('ImageFit');
+    expect(SITE_NAME).toBe('Cleeke');
     expect(canonicalUrl('/')).toBe('https://cleeke.com');
     expect(canonicalUrl('/compress-image')).toBe('https://cleeke.com/compress-image');
   });

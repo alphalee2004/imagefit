@@ -8,15 +8,15 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'ImageFit - Compress Images to the Size You Need',
-    template: '%s | ImageFit',
+    default: 'Cleeke - Compress Images to the Size You Need',
+    template: '%s | Cleeke',
   },
   description:
     'Compress, resize and convert JPG, PNG and WebP images to the size you need. Fast and private: files are processed in your browser and never uploaded.',
   openGraph: {
     type: 'website',
     siteName: SITE_NAME,
-    title: 'ImageFit - Compress Images to the Size You Need',
+    title: 'Cleeke - Compress Images to the Size You Need',
     description:
       'Compress, resize and convert images to the size you need. 100% private, in your browser.',
     url: SITE_URL,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ImageFit - Compress Images to the Size You Need',
+    title: 'Cleeke - Compress Images to the Size You Need',
     description:
       'Compress, resize and convert images to the size you need. 100% private, in your browser.',
     images: [OG_IMAGE_URL],

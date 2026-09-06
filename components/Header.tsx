@@ -1,15 +1,14 @@
 import Link from 'next/link';
 import { ShieldCheck } from 'lucide-react';
+import BrandMark from './BrandMark';
 
 export default function Header() {
   return (
     <header className="sticky top-0 z-20 border-b border-gray-200 bg-white/90 backdrop-blur">
       <div className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2 font-semibold text-gray-900">
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-teal-700 text-sm font-bold text-white">
-            IF
-          </span>
-          ImageFit
+          <BrandMark className="h-7 w-7" />
+          <span className="text-lg">cleeke</span>
         </Link>
         <nav className="flex items-center gap-4 text-sm text-gray-600">
           <Link href="/compress-image" className="hover:text-gray-900">

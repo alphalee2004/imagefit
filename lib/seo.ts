@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://cleeke.com';
-export const SITE_NAME = 'ImageFit';
+export const SITE_NAME = 'Cleeke';
 export const OG_IMAGE_URL = canonicalUrl('/opengraph-image');
 
 export function canonicalUrl(path: string): string {

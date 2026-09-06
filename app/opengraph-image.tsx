@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'ImageFit - Compress images to the size you need';
+export const alt = 'Cleeke - Compress images to the size you need';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -36,7 +36,7 @@ export default function OpengraphImage() {
             lineHeight: 1,
           }}
         >
-          ImageFit
+          Cleeke
         </div>
         <div
           style={{

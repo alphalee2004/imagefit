@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Project: ImageFit - browser-first image size optimizer.
+Project: Cleeke - browser-first image size optimizer.
 
 Read this file before every development task. It defines the long-term rules
 for this project.

@@ -1,4 +1,4 @@
-# ImageFit
+# Cleeke
 
 Compress, resize, and convert images to the size you need.
 

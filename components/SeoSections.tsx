@@ -37,9 +37,9 @@ export function HowItWorks({ steps }: { steps: SeoStep[] }) {
 
 export function WhyUse({ points }: { points: string[] }) {
   return (
-    <section className="mt-12" aria-labelledby="why-use-imagefit">
-      <h2 id="why-use-imagefit" className="text-xl font-semibold text-gray-900">
-        Why use ImageFit?
+    <section className="mt-12" aria-labelledby="why-use-cleeke">
+      <h2 id="why-use-cleeke" className="text-xl font-semibold text-gray-900">
+        Why use Cleeke?
       </h2>
       <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {points.map((point) => (
