@@ -290,6 +290,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
       showFormat: true,
       defaultFormat: 'webp',
       showTargetSize: false,
+      primaryActionLabel: 'Convert Image',
     },
     howItWorks: [
       { title: 'Choose an image', text: 'Select a JPG, PNG or WebP from your device.' },

@@ -20,7 +20,7 @@ export default function TaskPresetSelector({
             type="button"
             onClick={() => onChange(task.key)}
             title={task.description}
-            className={`rounded-lg border px-3 py-2 text-sm ${
+            className={`min-h-11 rounded-lg border px-3 py-2 text-sm ${
               value === task.key
                 ? 'border-teal-700 bg-teal-700 text-white'
                 : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'

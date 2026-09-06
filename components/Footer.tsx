@@ -9,6 +9,8 @@ export default function Footer() {
           <Link href="/compress-image">Compress</Link>
           <Link href="/resize-image">Resize</Link>
           <Link href="/image-converter">Converter</Link>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms</Link>
         </nav>
       </div>
     </footer>

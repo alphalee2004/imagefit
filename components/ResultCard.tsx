@@ -52,6 +52,11 @@ export default function ResultCard({
           <p key={line}>{line}</p>
         ))}
       </div>
+      <p className="mt-3 text-sm text-gray-700">
+        Download: <span className="font-medium">{formatLabel(result.format)}</span> ·{' '}
+        <span className="font-medium">{formatBytes(result.outputSize)}</span> ·{' '}
+        <span className="font-medium">{saved}% smaller</span>
+      </p>
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
         <button
           type="button"

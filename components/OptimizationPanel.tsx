@@ -32,6 +32,8 @@ interface Props {
   disabled: boolean;
   error: string | null;
   onOptimize: () => void;
+  hasImage: boolean;
+  actionLabel: string;
 }
 
 export default function OptimizationPanel({
@@ -56,7 +58,12 @@ export default function OptimizationPanel({
   disabled,
   error,
   onOptimize,
+  hasImage,
+  actionLabel,
 }: Props) {
+  const processing = disabled && hasImage;
+  const buttonLabel = processing ? 'Processing…' : actionLabel;
+
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-5 sm:p-6">
       <div className="space-y-5">
@@ -75,25 +82,32 @@ export default function OptimizationPanel({
         )}
 
         {showFormat && (
-          <div>
-            <label className="text-sm font-medium text-gray-900">Output format</label>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {FORMAT_OPTIONS.map((option) => (
-                <button
-                  key={option.key}
-                  type="button"
-                  onClick={() => onFormatChange(option.key)}
-                  className={`rounded-lg border px-3 py-2 text-sm ${
-                    formatChoice === option.key
-                      ? 'border-gray-900 bg-gray-900 text-white'
-                      : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
-                  }`}
-                >
-                  {option.label}
-                </button>
-              ))}
+          <>
+            <div>
+              <label className="text-sm font-medium text-gray-900">Output format</label>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {FORMAT_OPTIONS.map((option) => (
+                  <button
+                    key={option.key}
+                    type="button"
+                    onClick={() => onFormatChange(option.key)}
+                    className={`min-h-11 rounded-lg border px-3 py-2 text-sm ${
+                      formatChoice === option.key
+                        ? 'border-gray-900 bg-gray-900 text-white'
+                        : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+            {formatChoice === 'webp' && (
+              <p className="mt-2 text-xs text-gray-500">
+                WebP keeps high quality at a smaller file size on modern browsers.
+              </p>
+            )}
+          </>
         )}
 
         {showResize && (
@@ -121,7 +135,11 @@ export default function OptimizationPanel({
                 className="h-10 rounded-lg border border-gray-300 px-3 text-sm focus:border-teal-600 focus:outline-none"
               />
             </div>
-            <p className="mt-1 text-xs text-gray-400">Leave blank to keep the original size.</p>
+            <p className="mt-1 text-xs text-gray-400">
+              {resizeRequired
+                ? 'Enter at least one width or height.'
+                : 'Leave blank to keep the original size.'}
+            </p>
           </div>
         )}
 
@@ -134,16 +152,19 @@ export default function OptimizationPanel({
         <button
           type="button"
           onClick={onOptimize}
-          disabled={disabled}
-          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-5 text-sm font-medium text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+          disabled={disabled || !hasImage}
+          className="hidden h-11 w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-5 text-sm font-medium text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50 sm:inline-flex"
         >
-          {disabled ? (
+          {processing ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
             <Sparkles className="h-4 w-4" />
           )}
-          {disabled ? 'Optimizing…' : 'Optimize Image'}
+          {buttonLabel}
         </button>
+        {!hasImage && (
+          <p className="mt-2 text-center text-xs text-gray-500">Choose an image first.</p>
+        )}
       </div>
     </div>
   );

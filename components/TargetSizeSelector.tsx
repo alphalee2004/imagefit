@@ -26,7 +26,7 @@ export default function TargetSizeSelector({
         <button
           type="button"
           onClick={() => onChange(null)}
-          className={`rounded-lg border px-3 py-2 text-sm ${
+          className={`min-h-11 rounded-lg border px-3 py-2 text-sm ${
             value === null
               ? 'border-gray-900 bg-gray-900 text-white'
               : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
@@ -39,7 +39,7 @@ export default function TargetSizeSelector({
             key={preset.key}
             type="button"
             onClick={() => onChange(preset.key)}
-            className={`rounded-lg border px-3 py-2 text-sm ${
+            className={`min-h-11 rounded-lg border px-3 py-2 text-sm ${
               value === preset.key
                 ? 'border-gray-900 bg-gray-900 text-white'
                 : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
@@ -51,7 +51,7 @@ export default function TargetSizeSelector({
         <button
           type="button"
           onClick={() => onChange('custom')}
-          className={`rounded-lg border px-3 py-2 text-sm ${
+          className={`min-h-11 rounded-lg border px-3 py-2 text-sm ${
             value === 'custom'
               ? 'border-gray-900 bg-gray-900 text-white'
               : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
@@ -69,13 +69,13 @@ export default function TargetSizeSelector({
             value={customValue}
             onChange={(event) => onCustomValueChange(event.target.value)}
             placeholder="e.g. 300"
-            className="h-10 w-28 rounded-lg border border-gray-300 px-3 text-sm focus:border-teal-600 focus:outline-none"
+            className="h-11 w-28 rounded-lg border border-gray-300 px-3 text-sm focus:border-teal-600 focus:outline-none"
             aria-label="Custom target size"
           />
           <select
             value={customUnit}
             onChange={(event) => onCustomUnitChange(event.target.value as 'KB' | 'MB')}
-            className="h-10 rounded-lg border border-gray-300 bg-white px-2 text-sm"
+            className="h-11 rounded-lg border border-gray-300 bg-white px-2 text-sm"
             aria-label="Custom target unit"
           >
             <option value="KB">KB</option>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Loader2, Sparkles } from 'lucide-react';
 import type { ImageTransform, OptimizationOptions } from '@/engine/types';
 import { useImageOptimizer } from '@/hooks/useImageOptimizer';
 import { track } from '@/lib/analytics';
@@ -94,6 +95,7 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
   const showFormat = config.showFormat ?? false;
   const showResize = config.showResize ?? false;
   const resizeRequired = config.resizeRequired ?? false;
+  const actionLabel = config.primaryActionLabel ?? 'Optimize Image';
 
   const targetBytes = useMemo(() => {
     if (targetPreset === null) return null;
@@ -107,7 +109,10 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
 
   const handleOptimize = useCallback(() => {
     setPanelError(null);
-    if (!optimizer.image) return;
+    if (!optimizer.image) {
+      setPanelError('Please choose an image first.');
+      return;
+    }
     if (showResize && resizeRequired && !maxWidth.trim() && !maxHeight.trim()) {
       setPanelError('Enter a max width or height first.');
       return;
@@ -165,6 +170,18 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
   const handleApplyEdit = useCallback((next: ImageTransform | null) => {
     setTransform(next);
     setShowEditor(false);
+  }, []);
+
+  const handleSample = useCallback(async () => {
+    try {
+      const response = await fetch('/sample.jpg');
+      const blob = await response.blob();
+      handleFileRef.current(
+        new File([blob], 'cleeke-sample.jpg', { type: 'image/jpeg' }),
+      );
+    } catch {
+      setPanelError('Could not load the sample image.');
+    }
   }, []);
 
   const handleFileRef = useRef(handleFile);
@@ -225,10 +242,19 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
   }, [image, optimizer, originalPreviewUrl]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1.15fr_1fr]">
+    <div className="grid gap-6 pb-24 sm:pb-0 lg:grid-cols-[1.15fr_1fr]">
       <div className="space-y-4">
         {!image ? (
-          <UploadZone onFile={handleFile} />
+          <div className="space-y-3">
+            <UploadZone onFile={handleFile} />
+            <button
+              type="button"
+              onClick={() => void handleSample()}
+              className="text-sm font-medium text-teal-700 underline-offset-4 hover:underline"
+            >
+              Try with sample
+            </button>
+          </div>
         ) : (
           <ImageQueue
             image={image}
@@ -237,11 +263,6 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
             edited={transform !== null}
             previewUrl={originalPreviewUrl}
           />
-        )}
-        {errorToShow && !image && (
-          <p role="alert" className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
-            {errorToShow}
-          </p>
         )}
         {optimizer.status === 'processing' && (
           <ProgressView
@@ -291,7 +312,9 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
         maxHeight={maxHeight}
         onMaxHeightChange={handleMaxHeightChange}
         disabled={optimizer.status === 'processing' || showEditor}
-        error={image && errorToShow ? errorToShow : null}
+        error={errorToShow ?? null}
+        hasImage={Boolean(image)}
+        actionLabel={actionLabel}
         onOptimize={handleOptimize}
       />
 
@@ -306,6 +329,27 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
           />
         </div>
       )}
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-gray-200 bg-white p-3 sm:hidden">
+        <button
+          type="button"
+          onClick={handleOptimize}
+          disabled={!image || showEditor || optimizer.status === 'processing'}
+          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-5 text-sm font-medium text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {optimizer.status === 'processing' && image ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <Sparkles className="h-4 w-4" />
+          )}
+          {!image
+            ? 'Choose an image first'
+            : showEditor
+              ? 'Edit image first'
+              : optimizer.status === 'processing'
+                ? 'Processing…'
+                : actionLabel}
+        </button>
+      </div>
     </div>
   );
 }

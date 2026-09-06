@@ -26,6 +26,7 @@ export interface ToolUiConfig {
   showResize?: boolean;
   resizeRequired?: boolean;
   showTargetSize?: boolean;
+  primaryActionLabel?: string;
 }
 
 export type TaskKey =
