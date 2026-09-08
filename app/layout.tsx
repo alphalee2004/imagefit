@@ -8,25 +8,25 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Cleeke - Compress Images to the Size You Need',
+    default: 'Cleeke Image Tools - Compress, Resize & Convert',
     template: '%s | Cleeke',
   },
   description:
-    'Compress, resize and convert JPG, PNG and WebP images to the size you need. Fast and private: files are processed in your browser and never uploaded.',
+    'Cleeke is a free browser-based image tools platform. Compress, resize and convert JPG, PNG and WebP images without uploading them.',
   openGraph: {
     type: 'website',
     siteName: SITE_NAME,
-    title: 'Cleeke - Compress Images to the Size You Need',
+    title: 'Cleeke Image Tools - Compress, Resize & Convert',
     description:
-      'Compress, resize and convert images to the size you need. 100% private, in your browser.',
+      'Compress, resize and convert JPG, PNG and WebP images in your browser. Private and free.',
     url: SITE_URL,
     images: [OG_IMAGE_URL],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Cleeke - Compress Images to the Size You Need',
+    title: 'Cleeke Image Tools - Compress, Resize & Convert',
     description:
-      'Compress, resize and convert images to the size you need. 100% private, in your browser.',
+      'Compress, resize and convert JPG, PNG and WebP images in your browser. Private and free.',
     images: [OG_IMAGE_URL],
   },
   robots: { index: true, follow: true },

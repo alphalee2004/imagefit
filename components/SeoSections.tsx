@@ -1,24 +1,14 @@
 import Link from 'next/link';
+import type { SeoFaqItem, SeoSection, ToolLinkItem } from '@/lib/toolPages';
 
 export interface SeoStep {
   title: string;
   text: string;
 }
 
-export interface SeoFaq {
-  question: string;
-  answer: string;
-}
-
-export interface RelatedTool {
-  href: string;
-  label: string;
-  description: string;
-}
-
 export function HowItWorks({ steps }: { steps: SeoStep[] }) {
   return (
-    <section className="mt-12" aria-labelledby="how-it-works">
+    <section className="mt-12" aria-labelledby="how-it-works" data-seo-section>
       <h2 id="how-it-works" className="text-xl font-semibold text-gray-900">
         How it works
       </h2>
@@ -37,7 +27,7 @@ export function HowItWorks({ steps }: { steps: SeoStep[] }) {
 
 export function WhyUse({ points }: { points: string[] }) {
   return (
-    <section className="mt-12" aria-labelledby="why-use-cleeke">
+    <section className="mt-12" aria-labelledby="why-use-cleeke" data-seo-section>
       <h2 id="why-use-cleeke" className="text-xl font-semibold text-gray-900">
         Why use Cleeke?
       </h2>
@@ -52,9 +42,9 @@ export function WhyUse({ points }: { points: string[] }) {
   );
 }
 
-export function FaqSection({ items }: { items: SeoFaq[] }) {
+export function FaqSection({ items }: { items: SeoFaqItem[] }) {
   return (
-    <section className="mt-12" aria-labelledby="faq">
+    <section className="mt-12" aria-labelledby="faq" data-seo-section>
       <h2 id="faq" className="text-xl font-semibold text-gray-900">
         FAQ
       </h2>
@@ -70,9 +60,9 @@ export function FaqSection({ items }: { items: SeoFaq[] }) {
   );
 }
 
-export function RelatedTools({ items }: { items: RelatedTool[] }) {
+export function RelatedTools({ items }: { items: ToolLinkItem[] }) {
   return (
-    <section className="mt-12" aria-labelledby="related-tools">
+    <section className="mt-12" aria-labelledby="related-tools" data-seo-section>
       <h2 id="related-tools" className="text-xl font-semibold text-gray-900">
         Related tools
       </h2>
@@ -89,5 +79,36 @@ export function RelatedTools({ items }: { items: RelatedTool[] }) {
         ))}
       </div>
     </section>
+  );
+}
+
+export function SeoContent({ sections }: { sections: SeoSection[] }) {
+  return (
+    <>
+      {sections.map((section, index) => (
+        <section
+          key={`${section.heading}-${index}`}
+          className="mt-12"
+          aria-labelledby={`seo-section-${index}`}
+          data-seo-section
+        >
+          <h2 id={`seo-section-${index}`} className="text-xl font-semibold text-gray-900">
+            {section.heading}
+          </h2>
+          {section.paragraphs?.map((paragraph) => (
+            <p key={paragraph} className="mt-3 max-w-3xl text-gray-600">
+              {paragraph}
+            </p>
+          ))}
+          {section.bullets && section.bullets.length > 0 && (
+            <ul className="mt-3 max-w-3xl list-disc space-y-2 pl-5 text-gray-600">
+              {section.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))}
+    </>
   );
 }

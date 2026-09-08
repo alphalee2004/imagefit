@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://cleeke.com';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.cleeke.com';
 export const SITE_NAME = 'Cleeke';
 export const OG_IMAGE_URL = canonicalUrl('/opengraph-image');
 
@@ -36,24 +36,24 @@ export function pageMetadata(data: {
   };
 }
 
-export function breadcrumbSchema(name: string, path: string) {
+export interface BreadcrumbItem {
+  name: string;
+  path?: string;
+}
+
+export function breadcrumbSchema(items: BreadcrumbItem[]) {
+  const entries = items.map((item, index) => {
+    const base = {
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+    };
+    return item.path ? { ...base, item: canonicalUrl(item.path) } : base;
+  });
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: canonicalUrl('/'),
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name,
-        item: canonicalUrl(path),
-      },
-    ],
+    itemListElement: entries,
   };
 }
 

@@ -9,31 +9,41 @@ import {
 
 describe('SEO configuration', () => {
   it('uses the production domain', () => {
-    expect(SITE_URL).toBe('https://cleeke.com');
+    expect(SITE_URL).toBe('https://www.cleeke.com');
     expect(SITE_NAME).toBe('Cleeke');
-    expect(canonicalUrl('/')).toBe('https://cleeke.com');
-    expect(canonicalUrl('/compress-image')).toBe('https://cleeke.com/compress-image');
+    expect(canonicalUrl('/')).toBe('https://www.cleeke.com');
+    expect(canonicalUrl('/compress-image')).toBe('https://www.cleeke.com/compress-image');
   });
 
   it('points OpenGraph and Twitter at the generated image', () => {
-    expect(OG_IMAGE_URL).toBe('https://cleeke.com/opengraph-image');
+    expect(OG_IMAGE_URL).toBe('https://www.cleeke.com/opengraph-image');
   });
 
-  it('builds a two-level breadcrumb', () => {
-    const schema = breadcrumbSchema('Compress Image', '/compress-image');
+  it('builds a breadcrumb that matches the visible Image Tools hierarchy', () => {
+    const schema = breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Image Tools', path: '/image-tools' },
+      { name: 'Compress Image', path: '/compress-image' },
+    ]);
     expect(schema['@type']).toBe('BreadcrumbList');
     expect(schema.itemListElement).toEqual([
       {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://cleeke.com',
+        item: 'https://www.cleeke.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
+        name: 'Image Tools',
+        item: 'https://www.cleeke.com/image-tools',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
         name: 'Compress Image',
-        item: 'https://cleeke.com/compress-image',
+        item: 'https://www.cleeke.com/compress-image',
       },
     ]);
   });

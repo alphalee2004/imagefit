@@ -10,14 +10,20 @@ export default function Header() {
           <BrandMark className="h-7 w-7" />
           <span className="text-lg font-bold">CLEEKE</span>
         </Link>
-        <nav className="flex items-center gap-4 text-sm text-gray-600">
-          <Link href="/compress-image" className="inline-flex min-h-11 items-center px-2 hover:text-gray-900">
-            Compress
+        <nav className="flex items-center gap-2 text-sm text-gray-600 sm:gap-4">
+          <Link href="/image-tools" className="inline-flex min-h-11 items-center px-2 hover:text-gray-900">
+            Image Tools
           </Link>
-          <Link href="/resize-image" className="inline-flex min-h-11 items-center px-2 hover:text-gray-900">
+          <Link
+            href="/resize-image"
+            className="hidden min-h-11 items-center px-2 hover:text-gray-900 sm:inline-flex"
+          >
             Resize
           </Link>
-          <Link href="/image-converter" className="inline-flex min-h-11 items-center px-2 hover:text-gray-900">
+          <Link
+            href="/image-converter"
+            className="hidden min-h-11 items-center px-2 hover:text-gray-900 lg:inline-flex"
+          >
             Converter
           </Link>
           <span className="flex items-center gap-1 rounded-full border border-gray-200 px-2.5 py-1 text-xs text-gray-500">

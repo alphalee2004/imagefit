@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Hero from '@/components/Hero';
 import ImageOptimizer from '@/components/ImageOptimizer';
+import ImageToolsDirectory from '@/components/ImageToolsDirectory';
 import JsonLd from '@/components/JsonLd';
-import { FaqSection, HowItWorks, RelatedTools, WhyUse } from '@/components/SeoSections';
+import { FaqSection, SeoContent } from '@/components/SeoSections';
 import { faqPageSchema, pageMetadata, softwareApplicationSchema } from '@/lib/seo';
-import { HOME_PAGE } from '@/lib/toolPages';
+import { ALL_TOOLS, HOME_PAGE } from '@/lib/toolPages';
 
 export const metadata: Metadata = pageMetadata({
   title: HOME_PAGE.title,
@@ -15,15 +16,24 @@ export const metadata: Metadata = pageMetadata({
 export default function Home() {
   return (
     <main className="pb-16">
-      <Hero />
+      <Hero h1={HOME_PAGE.h1} intro={HOME_PAGE.intro} />
       <div className="mx-auto w-full max-w-5xl px-4 pt-8 sm:px-6">
-        <ImageOptimizer config={{ defaultTargetBytes: 200 * 1024 }} />
-      </div>
-      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
-        <HowItWorks steps={HOME_PAGE.howItWorks} />
-        <WhyUse points={HOME_PAGE.whyUse} />
+        <section aria-labelledby="home-compressor-heading" data-tool-panel>
+          <h2 id="home-compressor-heading" className="text-xl font-semibold text-gray-900">
+            {HOME_PAGE.toolHeading}
+          </h2>
+          <p className="mt-2 max-w-2xl text-gray-600">{HOME_PAGE.toolIntro}</p>
+          <div className="mt-4">
+            <ImageOptimizer config={{ defaultTargetBytes: 200 * 1024 }} />
+          </div>
+        </section>
+        <ImageToolsDirectory
+          title="Explore image tools"
+          intro="Choose a focused workflow for the limit you need to meet."
+          items={ALL_TOOLS}
+        />
+        <SeoContent sections={HOME_PAGE.sections} />
         <FaqSection items={HOME_PAGE.faq} />
-        <RelatedTools items={HOME_PAGE.related} />
       </div>
       <JsonLd data={softwareApplicationSchema()} />
       <JsonLd data={faqPageSchema(HOME_PAGE.faq)} />

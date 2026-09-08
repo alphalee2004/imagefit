@@ -9,6 +9,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1,
     },
+    {
+      url: `${SITE_URL}/image-tools`,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
     ...Object.values(TOOL_PAGES).map((page) => ({
       url: `${SITE_URL}${page.path}`,
       changeFrequency: 'monthly' as const,
