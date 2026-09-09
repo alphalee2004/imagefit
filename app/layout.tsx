@@ -1,9 +1,16 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import PageViewTracker from '@/components/PageViewTracker';
 import { OG_IMAGE_URL, SITE_NAME, SITE_URL } from '@/lib/seo';
 import './globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -37,7 +44,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-[#f7f8fa] text-gray-900 antialiased">
+      <body className={`${inter.variable} min-h-screen bg-[#f7f8fa] text-gray-900 antialiased`}>
         <Header />
         {children}
         <Footer />

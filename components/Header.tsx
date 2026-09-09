@@ -10,7 +10,7 @@ export default function Header() {
           <BrandMark className="h-7 w-7" />
           <span className="text-lg font-bold">CLEEKE</span>
         </Link>
-        <nav className="flex items-center gap-2 text-sm text-gray-600 sm:gap-4">
+        <nav className="flex items-center gap-2 text-base text-gray-600 sm:gap-4">
           <Link href="/image-tools" className="inline-flex min-h-11 items-center px-2 hover:text-gray-900">
             Image Tools
           </Link>

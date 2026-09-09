@@ -19,8 +19,8 @@ import {
 export default function ToolPage({ routeKey }: { routeKey: RouteKey }) {
   const data = TOOL_PAGES[routeKey];
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 pb-16 pt-8 sm:px-6">
-      <header className="mb-8">
+    <main className="mx-auto w-full max-w-5xl px-4 pb-12 pt-8 sm:px-6">
+      <header className="mb-6">
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
@@ -28,8 +28,8 @@ export default function ToolPage({ routeKey }: { routeKey: RouteKey }) {
             { name: data.h1 },
           ]}
         />
-        <h1 className="text-3xl font-semibold tracking-normal text-gray-900">{data.h1}</h1>
-        <p className="mt-2 max-w-2xl text-gray-600">{data.intro}</p>
+        <h1 className="text-4xl font-semibold tracking-normal text-gray-900">{data.h1}</h1>
+        <p className="mt-3 max-w-2xl text-base text-gray-600">{data.intro}</p>
       </header>
 
       <div data-tool-panel>

@@ -22,8 +22,8 @@ export default function ProgressView({
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-4">
       <div className="flex items-center justify-between">
-        <p className="text-sm font-medium text-gray-900">Optimizing…</p>
-        <span className="text-sm text-gray-500">{Math.round(progress)}%</span>
+        <p className="text-base font-medium text-gray-900">Optimizing…</p>
+        <span className="text-base text-gray-500">{Math.round(progress)}%</span>
       </div>
       <div className="mt-2 h-2 overflow-hidden rounded-full bg-gray-100">
         <div
@@ -36,7 +36,7 @@ export default function ProgressView({
         <button
           type="button"
           onClick={onCancel}
-          className="text-xs font-medium text-red-600 hover:text-red-700"
+          className="inline-flex min-h-11 items-center text-base font-medium text-red-600 hover:text-red-700"
         >
           Cancel
         </button>

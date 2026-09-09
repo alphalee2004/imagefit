@@ -250,7 +250,7 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
             <button
               type="button"
               onClick={() => void handleSample()}
-              className="text-sm font-medium text-teal-700 underline-offset-4 hover:underline"
+              className="text-base font-medium text-teal-700 underline-offset-4 hover:underline"
             >
               Try with sample
             </button>
@@ -334,7 +334,7 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
           type="button"
           onClick={handleOptimize}
           disabled={!image || showEditor || optimizer.status === 'processing'}
-          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-5 text-sm font-medium text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-5 text-base font-medium text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {optimizer.status === 'processing' && image ? (
             <Loader2 className="h-4 w-4 animate-spin" />

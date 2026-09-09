@@ -161,7 +161,7 @@ export default function EditImagePanel({
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-4 sm:p-5">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-gray-900">Edit image</h2>
+        <h2 className="text-lg font-semibold text-gray-900">Edit image</h2>
         <button
           type="button"
           onClick={onCancel}
@@ -176,7 +176,7 @@ export default function EditImagePanel({
         <button
           type="button"
           onClick={() => setRotation((value) => (value + 90) % 360)}
-          className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 text-xs font-medium text-gray-700 hover:border-gray-400"
+          className="inline-flex h-11 items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 text-base font-medium text-gray-700 hover:border-gray-400"
           title="Rotate clockwise"
         >
           <RotateCw className="h-4 w-4" /> 90°
@@ -184,7 +184,7 @@ export default function EditImagePanel({
         <button
           type="button"
           onClick={() => setRotation((value) => (value + 270) % 360)}
-          className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 text-xs font-medium text-gray-700 hover:border-gray-400"
+          className="inline-flex h-11 items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 text-base font-medium text-gray-700 hover:border-gray-400"
           title="Rotate counterclockwise"
         >
           <RotateCcw className="h-4 w-4" /> -90°
@@ -192,7 +192,7 @@ export default function EditImagePanel({
         <button
           type="button"
           onClick={() => setFlipH((value) => !value)}
-          className={`inline-flex h-9 items-center gap-1.5 rounded-lg border px-3 text-xs font-medium ${
+          className={`inline-flex h-11 items-center gap-1.5 rounded-lg border px-3 text-base font-medium ${
             flipH ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
           }`}
           title="Flip horizontally"
@@ -202,14 +202,14 @@ export default function EditImagePanel({
         <button
           type="button"
           onClick={() => setFlipV((value) => !value)}
-          className={`inline-flex h-9 items-center gap-1.5 rounded-lg border px-3 text-xs font-medium ${
+          className={`inline-flex h-11 items-center gap-1.5 rounded-lg border px-3 text-base font-medium ${
             flipV ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
           }`}
           title="Flip vertically"
         >
           <FlipVertical2 className="h-4 w-4" /> V
         </button>
-        <label className="flex items-center gap-2 text-xs text-gray-500">
+        <label className="flex items-center gap-2 text-base text-gray-500">
           Angle
           <input
             type="range"
@@ -224,7 +224,7 @@ export default function EditImagePanel({
         <button
           type="button"
           onClick={handleReset}
-          className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 text-xs font-medium text-gray-700 hover:border-gray-400"
+          className="inline-flex h-11 items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 text-base font-medium text-gray-700 hover:border-gray-400"
         >
           <Undo2 className="h-4 w-4" /> Reset
         </button>
@@ -232,7 +232,7 @@ export default function EditImagePanel({
 
       <div className="mt-3 overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
         {!previewUrl && !error && (
-          <div className="flex h-52 items-center justify-center text-sm text-gray-500">
+          <div className="flex h-52 items-center justify-center text-base text-gray-500">
             <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Preparing preview…
           </div>
         )}
@@ -246,7 +246,7 @@ export default function EditImagePanel({
             className="block h-auto w-full touch-none cursor-crosshair"
           />
         )}
-        {error && <p className="p-4 text-sm text-red-700">{error}</p>}
+        {error && <p className="p-4 text-base text-red-700">{error}</p>}
       </div>
       <p className="mt-2 text-xs text-gray-400">
         Drag inside the box to move it, drag a corner to resize, or drag outside to draw a new box.
@@ -256,7 +256,7 @@ export default function EditImagePanel({
         <button
           type="button"
           onClick={onCancel}
-          className="inline-flex h-10 items-center justify-center rounded-lg border border-gray-300 bg-white px-4 text-sm font-medium text-gray-700 hover:border-gray-400"
+          className="inline-flex h-11 items-center justify-center rounded-lg border border-gray-300 bg-white px-4 text-base font-medium text-gray-700 hover:border-gray-400"
         >
           Cancel
         </button>
@@ -264,7 +264,7 @@ export default function EditImagePanel({
           type="button"
           onClick={handleApply}
           disabled={!previewUrl || Boolean(error)}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 text-base font-medium text-white hover:bg-gray-800 disabled:opacity-50"
         >
           <Check className="h-4 w-4" /> Apply edit
         </button>

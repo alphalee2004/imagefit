@@ -32,7 +32,7 @@ export default function ImageQueue({
         </span>
       )}
       <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-medium text-gray-900">{image.name}</p>
+        <p className="truncate text-base font-medium text-gray-900">{image.name}</p>
         <p className="mt-0.5 text-xs text-gray-500">
           {formatBytes(image.size)} · {image.width} × {image.height} ·{' '}
           {formatLabel(image.format)}

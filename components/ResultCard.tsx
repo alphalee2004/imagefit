@@ -52,7 +52,7 @@ export default function ResultCard({
           <p key={line}>{line}</p>
         ))}
       </div>
-      <p className="mt-3 text-sm text-gray-700">
+      <p className="mt-3 text-base text-gray-700">
         Download: <span className="font-medium">{formatLabel(result.format)}</span> ·{' '}
         <span className="font-medium">{formatBytes(result.outputSize)}</span> ·{' '}
         <span className="font-medium">{saved}% smaller</span>
@@ -61,7 +61,7 @@ export default function ResultCard({
         <button
           type="button"
           onClick={onDownload}
-          className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-teal-700 px-5 text-sm font-medium text-white hover:bg-teal-800"
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-teal-700 px-5 text-base font-medium text-white hover:bg-teal-800"
         >
           <Download className="h-4 w-4" />
           Download
@@ -69,7 +69,7 @@ export default function ResultCard({
         <button
           type="button"
           onClick={onReset}
-          className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-5 text-sm font-medium text-gray-700 hover:border-gray-400"
+          className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-5 text-base font-medium text-gray-700 hover:border-gray-400"
         >
           <RefreshCw className="h-4 w-4" />
           Optimize another

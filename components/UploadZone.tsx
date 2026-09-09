@@ -51,8 +51,8 @@ export default function UploadZone({ onFile }: { onFile: (file: File) => void })
         }}
       />
       <UploadCloud className="h-9 w-9 text-teal-700" />
-      <p className="mt-3 font-medium text-gray-900">Drop your image here</p>
-      <p className="text-sm text-gray-500">or tap to choose</p>
+      <p className="mt-3 text-lg font-medium text-gray-900">Drop your image here</p>
+      <p className="text-base text-gray-500">or tap to choose</p>
       <p className="mt-3 text-xs text-gray-400">
         JPG, PNG or WebP · up to 50 MB · paste (Ctrl+V)
       </p>

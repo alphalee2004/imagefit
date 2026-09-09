@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function Home() {
   return (
-    <main className="pb-16">
+    <main className="pb-12">
       <Hero h1={HOME_PAGE.h1} intro={HOME_PAGE.intro} />
       <div className="mx-auto w-full max-w-5xl px-4 pt-8 sm:px-6">
         <section aria-labelledby="home-compressor-heading" data-tool-panel>

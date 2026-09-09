@@ -12,7 +12,7 @@ export default function ImageToolsDirectory({
 }) {
   const sectionId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   return (
-    <section className="mt-12" aria-labelledby={sectionId} data-seo-section>
+    <section className="mt-10" aria-labelledby={sectionId} data-seo-section>
       <h2 id={sectionId} className="text-xl font-semibold text-gray-900">
         {title}
       </h2>

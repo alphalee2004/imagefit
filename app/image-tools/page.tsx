@@ -14,18 +14,18 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ImageToolsPage() {
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 pb-16 pt-8 sm:px-6">
-      <header className="mb-8">
+    <main className="mx-auto w-full max-w-5xl px-4 pb-12 pt-8 sm:px-6">
+      <header className="mb-6">
         <Breadcrumbs
           items={[
             { name: 'Home', href: '/' },
             { name: IMAGE_TOOLS_HUB.h1 },
           ]}
         />
-        <h1 className="text-3xl font-semibold tracking-normal text-gray-900">
+        <h1 className="text-4xl font-semibold tracking-normal text-gray-900">
           {IMAGE_TOOLS_HUB.h1}
         </h1>
-        <p className="mt-2 max-w-2xl text-gray-600">{IMAGE_TOOLS_HUB.intro}</p>
+        <p className="mt-3 max-w-2xl text-base text-gray-600">{IMAGE_TOOLS_HUB.intro}</p>
       </header>
 
       <ImageToolsDirectory
