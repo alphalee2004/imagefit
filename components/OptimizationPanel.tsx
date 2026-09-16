@@ -65,8 +65,8 @@ export default function OptimizationPanel({
   const buttonLabel = processing ? 'Processing…' : actionLabel;
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-5 sm:p-6">
-      <div className="space-y-4">
+    <div className="rounded-xl border border-gray-200 bg-white p-4 sm:p-5">
+      <div className="space-y-3">
         {showTargetSize && (
           <>
             <TaskPresetSelector value={taskKey} onChange={onTaskKeyChange} />
@@ -91,7 +91,7 @@ export default function OptimizationPanel({
                     key={option.key}
                     type="button"
                     onClick={() => onFormatChange(option.key)}
-                    className={`min-h-11 rounded-lg border px-3 py-2 text-base ${
+                    className={`min-h-11 whitespace-normal rounded-lg border px-3 py-2 text-base leading-tight ${
                       formatChoice === option.key
                         ? 'border-gray-900 bg-gray-900 text-white'
                         : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
@@ -103,7 +103,7 @@ export default function OptimizationPanel({
               </div>
             </div>
             {formatChoice === 'webp' && (
-              <p className="mt-2 text-xs text-gray-500">
+              <p className="mt-1.5 text-sm text-gray-500">
                 WebP keeps high quality at a smaller file size on modern browsers.
               </p>
             )}
@@ -135,7 +135,7 @@ export default function OptimizationPanel({
                 className="h-11 rounded-lg border border-gray-300 px-3 text-base focus:border-teal-600 focus:outline-none"
               />
             </div>
-            <p className="mt-1 text-xs text-gray-400">
+            <p className="mt-1 text-sm text-gray-500">
               {resizeRequired
                 ? 'Enter at least one width or height.'
                 : 'Leave blank to keep the original size.'}
@@ -163,7 +163,7 @@ export default function OptimizationPanel({
           {buttonLabel}
         </button>
         {!hasImage && (
-          <p className="mt-2 text-center text-xs text-gray-500">Choose an image first.</p>
+          <p className="mt-1 text-center text-sm text-gray-500">Choose an image first.</p>
         )}
       </div>
     </div>

@@ -24,21 +24,21 @@ export default function ResultCard({
   const summary = buildChangeSummary(original, result, edited);
 
   return (
-    <div className="mt-6 rounded-xl border border-gray-200 bg-white p-5 sm:p-6">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="grid gap-4 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
+    <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4 sm:p-5">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
           <div>
-            <p className="text-xs font-medium text-gray-500">Original</p>
+            <p className="text-sm font-medium text-gray-500">Original</p>
             <p className="mt-1 text-lg font-semibold text-gray-900">{formatBytes(original.size)}</p>
-            <p className="text-xs text-gray-500">
+            <p className="text-sm text-gray-500">
               {original.width} × {original.height} · {formatLabel(original.format)}
             </p>
           </div>
           <ArrowRight className="hidden h-4 w-4 text-gray-400 sm:block" />
           <div>
-            <p className="text-xs font-medium text-gray-500">Optimized</p>
+            <p className="text-sm font-medium text-gray-500">Optimized</p>
             <p className="mt-1 text-lg font-semibold text-teal-700">{formatBytes(result.outputSize)}</p>
-            <p className="text-xs text-gray-500">
+            <p className="text-sm text-gray-500">
               {result.width} × {result.height} · {formatLabel(result.format)}
             </p>
           </div>
@@ -47,7 +47,7 @@ export default function ResultCard({
           {saved}% smaller
         </span>
       </div>
-      <div className="mt-4 space-y-1 rounded-lg bg-gray-50 p-3 text-xs text-gray-600">
+      <div className="mt-3 space-y-1 rounded-lg bg-gray-50 p-3 text-sm text-gray-600">
         {summary.map((line) => (
           <p key={line}>{line}</p>
         ))}
@@ -57,7 +57,7 @@ export default function ResultCard({
         <span className="font-medium">{formatBytes(result.outputSize)}</span> ·{' '}
         <span className="font-medium">{saved}% smaller</span>
       </p>
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:gap-3">
         <button
           type="button"
           onClick={onDownload}

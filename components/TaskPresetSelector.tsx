@@ -20,7 +20,7 @@ export default function TaskPresetSelector({
             type="button"
             onClick={() => onChange(task.key)}
             title={task.description}
-            className={`min-h-11 rounded-lg border px-3 py-2 text-base ${
+            className={`min-h-11 whitespace-normal rounded-lg border px-3 py-2 text-base leading-tight ${
               value === task.key
                 ? 'border-teal-700 bg-teal-700 text-white'
                 : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
@@ -31,7 +31,7 @@ export default function TaskPresetSelector({
         ))}
       </div>
       {value !== 'general' && (
-        <p className="mt-2 text-xs text-gray-500">{active.description}</p>
+        <p className="mt-1.5 text-sm text-gray-500">{active.description}</p>
       )}
     </div>
   );

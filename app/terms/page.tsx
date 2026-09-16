@@ -10,10 +10,12 @@ export const metadata: Metadata = pageMetadata({
 
 export default function TermsPage() {
   return (
-    <main className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6">
-      <h1 className="text-4xl font-semibold tracking-normal">Terms of Use</h1>
+    <main className="mx-auto w-full max-w-3xl px-4 py-7 sm:px-6">
+      <h1 className="text-3xl font-semibold leading-tight tracking-normal sm:text-4xl">
+        Terms of Use
+      </h1>
       <p className="mt-2 text-sm text-gray-500">Last updated: September 6, 2026</p>
-      <div className="mt-8 space-y-6 text-gray-700">
+      <div className="mt-6 space-y-5 text-gray-700">
         <section>
           <h2 className="text-xl font-semibold text-gray-900">1. Use of the service</h2>
           <p className="mt-2 text-base leading-7">

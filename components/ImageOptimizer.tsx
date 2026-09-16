@@ -242,8 +242,8 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
   }, [image, optimizer, originalPreviewUrl]);
 
   return (
-    <div className="grid gap-6 pb-24 sm:pb-0 lg:grid-cols-[1.15fr_1fr]">
-      <div className="space-y-4">
+    <div className="grid gap-4 pb-24 sm:gap-5 sm:pb-0 lg:grid-cols-[1.15fr_1fr]">
+      <div className="space-y-3">
         {!image ? (
           <div className="space-y-3">
             <UploadZone onFile={handleFile} />
@@ -329,7 +329,7 @@ export default function ImageOptimizer({ config }: { config: ToolUiConfig }) {
           />
         </div>
       )}
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-gray-200 bg-white p-3 sm:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-gray-200 bg-white p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:hidden">
         <button
           type="button"
           onClick={handleOptimize}

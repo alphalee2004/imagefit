@@ -25,9 +25,9 @@ export default function BeforeAfterPreview({
     Boolean(originalPreviewUrl) || canRenderImagePreview(originalWidth, originalHeight);
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="grid gap-3 sm:grid-cols-2">
       <figure className="rounded-xl border border-gray-200 bg-white p-3">
-        <figcaption className="mb-2 text-xs font-medium text-gray-500">
+        <figcaption className="mb-2 text-sm font-medium text-gray-500">
           Original · {originalWidth} × {originalHeight}
         </figcaption>
         {canShowOriginal ? (
@@ -40,7 +40,7 @@ export default function BeforeAfterPreview({
         )}
       </figure>
       <figure className="rounded-xl border border-gray-200 bg-white p-3">
-        <figcaption className="mb-2 text-xs font-medium text-gray-500">
+        <figcaption className="mb-2 text-sm font-medium text-gray-500">
           Optimized · {resultWidth} × {resultHeight}
         </figcaption>
         {canRenderImagePreview(resultWidth, resultHeight) ? (

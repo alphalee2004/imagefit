@@ -34,7 +34,7 @@ export default function UploadZone({ onFile }: { onFile: (file: File) => void })
         setDragging(false);
         pick(event.dataTransfer.files);
       }}
-      className={`flex min-h-52 cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed p-6 text-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 ${
+      className={`flex min-h-48 cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed p-5 text-center transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 ${
         dragging
           ? 'border-teal-600 bg-teal-50'
           : 'border-gray-300 bg-white hover:border-teal-600 hover:bg-teal-50/40'
@@ -51,9 +51,9 @@ export default function UploadZone({ onFile }: { onFile: (file: File) => void })
         }}
       />
       <UploadCloud className="h-9 w-9 text-teal-700" />
-      <p className="mt-3 text-lg font-medium text-gray-900">Drop your image here</p>
+      <p className="mt-2 text-lg font-medium text-gray-900">Drop your image here</p>
       <p className="text-base text-gray-500">or tap to choose</p>
-      <p className="mt-3 text-xs text-gray-400">
+      <p className="mt-2 text-sm text-gray-500">
         JPG, PNG or WebP · up to 50 MB · paste (Ctrl+V)
       </p>
     </div>

@@ -12,12 +12,12 @@ export default function ImageToolsDirectory({
 }) {
   const sectionId = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   return (
-    <section className="mt-10" aria-labelledby={sectionId} data-seo-section>
+    <section className="mt-8" aria-labelledby={sectionId} data-seo-section>
       <h2 id={sectionId} className="text-xl font-semibold text-gray-900">
         {title}
       </h2>
-      {intro && <p className="mt-3 max-w-3xl text-gray-600">{intro}</p>}
-      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {intro && <p className="mt-2 max-w-3xl text-base text-gray-600">{intro}</p>}
+      <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
           <Link
             key={item.href}

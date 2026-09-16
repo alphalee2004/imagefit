@@ -47,6 +47,31 @@ export default function EditImagePanel({
   );
 
   useEffect(() => {
+    const mobile = window.matchMedia('(max-width: 639px)');
+    const previousOverflow = document.body.style.overflow;
+
+    function syncBodyScroll() {
+      document.body.style.overflow = mobile.matches ? 'hidden' : previousOverflow;
+    }
+
+    syncBodyScroll();
+    mobile.addEventListener('change', syncBodyScroll);
+    return () => {
+      mobile.removeEventListener('change', syncBodyScroll);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') onCancel();
+    }
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [onCancel]);
+
+  useEffect(() => {
     let cancelled = false;
     let objectUrl: string | null = null;
     createPreview()
@@ -119,8 +144,14 @@ export default function EditImagePanel({
   }
 
   function handlePointerDown(event: React.PointerEvent<HTMLCanvasElement>) {
+    event.preventDefault();
     const point = pointerToNormalized(event);
-    const handle = hitHandle(point, crop);
+    const handle = hitHandle(
+      point,
+      crop,
+      event.currentTarget.clientWidth,
+      event.currentTarget.clientHeight,
+    );
     const inside = point.x >= crop.x && point.x <= crop.x + crop.width && point.y >= crop.y && point.y <= crop.y + crop.height;
     const mode: DragMode = handle ?? (inside ? 'move' : 'new');
     dragRef.current = { mode, startX: point.x, startY: point.y, crop: { ...crop } };
@@ -159,80 +190,28 @@ export default function EditImagePanel({
   }
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-4 sm:p-5">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-gray-900">Edit image</h2>
+    <div
+      role="dialog"
+      aria-labelledby="edit-image-title"
+      className="fixed inset-0 z-50 flex h-[100dvh] flex-col overflow-hidden bg-white px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 sm:static sm:z-auto sm:h-auto sm:overflow-visible sm:rounded-xl sm:border sm:border-gray-200 sm:bg-white sm:p-5 sm:pb-5"
+    >
+      <div className="flex shrink-0 items-center justify-between">
+        <h2 id="edit-image-title" className="text-lg font-semibold text-gray-900">
+          Edit image
+        </h2>
         <button
           type="button"
           onClick={onCancel}
           aria-label="Close editor"
-          className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600"
         >
-          <X className="h-4 w-4" />
+          <X className="h-5 w-5" />
         </button>
       </div>
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
-        <button
-          type="button"
-          onClick={() => setRotation((value) => (value + 90) % 360)}
-          className="inline-flex h-11 items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 text-base font-medium text-gray-700 hover:border-gray-400"
-          title="Rotate clockwise"
-        >
-          <RotateCw className="h-4 w-4" /> 90°
-        </button>
-        <button
-          type="button"
-          onClick={() => setRotation((value) => (value + 270) % 360)}
-          className="inline-flex h-11 items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 text-base font-medium text-gray-700 hover:border-gray-400"
-          title="Rotate counterclockwise"
-        >
-          <RotateCcw className="h-4 w-4" /> -90°
-        </button>
-        <button
-          type="button"
-          onClick={() => setFlipH((value) => !value)}
-          className={`inline-flex h-11 items-center gap-1.5 rounded-lg border px-3 text-base font-medium ${
-            flipH ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
-          }`}
-          title="Flip horizontally"
-        >
-          <FlipHorizontal2 className="h-4 w-4" /> H
-        </button>
-        <button
-          type="button"
-          onClick={() => setFlipV((value) => !value)}
-          className={`inline-flex h-11 items-center gap-1.5 rounded-lg border px-3 text-base font-medium ${
-            flipV ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
-          }`}
-          title="Flip vertically"
-        >
-          <FlipVertical2 className="h-4 w-4" /> V
-        </button>
-        <label className="flex items-center gap-2 text-base text-gray-500">
-          Angle
-          <input
-            type="range"
-            min={-180}
-            max={180}
-            step={1}
-            value={rotation > 180 ? rotation - 360 : rotation}
-            onChange={(event) => setRotation(((Number(event.target.value) % 360) + 360) % 360)}
-            className="w-28"
-          />
-        </label>
-        <button
-          type="button"
-          onClick={handleReset}
-          className="inline-flex h-11 items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 text-base font-medium text-gray-700 hover:border-gray-400"
-        >
-          <Undo2 className="h-4 w-4" /> Reset
-        </button>
-      </div>
-
-      <div className="mt-3 overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
+      <div className="mt-3 flex min-h-44 flex-1 items-center justify-center overflow-hidden rounded-lg border border-gray-200 bg-gray-50 sm:mt-4 sm:min-h-52 sm:flex-none">
         {!previewUrl && !error && (
-          <div className="flex h-52 items-center justify-center text-base text-gray-500">
+          <div className="flex h-44 items-center justify-center text-base text-gray-500">
             <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Preparing preview…
           </div>
         )}
@@ -243,16 +222,79 @@ export default function EditImagePanel({
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             onPointerCancel={handlePointerUp}
-            className="block h-auto w-full touch-none cursor-crosshair"
+            className="block h-auto max-h-full w-auto max-w-full touch-none cursor-crosshair"
           />
         )}
         {error && <p className="p-4 text-base text-red-700">{error}</p>}
       </div>
-      <p className="mt-2 text-xs text-gray-400">
+
+      <div className="mt-3 shrink-0 space-y-2">
+        <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
+          <button
+            type="button"
+            onClick={() => setRotation((value) => (value + 90) % 360)}
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-3 text-base font-medium text-gray-700 hover:border-gray-400"
+            title="Rotate clockwise"
+          >
+            <RotateCw className="h-5 w-5" /> 90°
+          </button>
+          <button
+            type="button"
+            onClick={() => setRotation((value) => (value + 270) % 360)}
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-3 text-base font-medium text-gray-700 hover:border-gray-400"
+            title="Rotate counterclockwise"
+          >
+            <RotateCcw className="h-5 w-5" /> -90°
+          </button>
+          <button
+            type="button"
+            onClick={() => setFlipH((value) => !value)}
+            className={`inline-flex h-12 items-center justify-center gap-2 rounded-lg border px-3 text-base font-medium ${
+              flipH ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
+            }`}
+            title="Flip horizontally"
+          >
+            <FlipHorizontal2 className="h-5 w-5" /> Flip H
+          </button>
+          <button
+            type="button"
+            onClick={() => setFlipV((value) => !value)}
+            className={`inline-flex h-12 items-center justify-center gap-2 rounded-lg border px-3 text-base font-medium ${
+              flipV ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
+            }`}
+            title="Flip vertically"
+          >
+            <FlipVertical2 className="h-5 w-5" /> Flip V
+          </button>
+        </div>
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2 sm:flex sm:items-center">
+          <label className="flex min-h-12 min-w-0 items-center gap-2 rounded-lg border border-gray-300 bg-white px-3 text-base text-gray-600">
+            <span className="shrink-0">Angle</span>
+            <input
+              type="range"
+              min={-180}
+              max={180}
+              step={1}
+              value={rotation > 180 ? rotation - 360 : rotation}
+              onChange={(event) => setRotation(((Number(event.target.value) % 360) + 360) % 360)}
+              className="min-w-0 flex-1 sm:w-28"
+            />
+          </label>
+          <button
+            type="button"
+            onClick={handleReset}
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-3 text-base font-medium text-gray-700 hover:border-gray-400"
+          >
+            <Undo2 className="h-5 w-5" /> Reset
+          </button>
+        </div>
+      </div>
+
+      <p className="mt-2 shrink-0 text-sm leading-5 text-gray-500">
         Drag inside the box to move it, drag a corner to resize, or drag outside to draw a new box.
       </p>
 
-      <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:justify-end">
+      <div className="mt-3 grid shrink-0 grid-cols-2 gap-2 sm:flex sm:justify-end">
         <button
           type="button"
           onClick={onCancel}
@@ -306,17 +348,91 @@ function drawCropOverlay(
   ctx.lineWidth = 1;
   ctx.setLineDash([4, 4]);
   ctx.strokeRect(x, y, w, h);
+  ctx.setLineDash([]);
+  ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+  ctx.lineWidth = 1;
+  for (const fraction of [1 / 3, 2 / 3]) {
+    ctx.beginPath();
+    ctx.moveTo(x + w * fraction, y);
+    ctx.lineTo(x + w * fraction, y + h);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y + h * fraction);
+    ctx.lineTo(x + w, y + h * fraction);
+    ctx.stroke();
+  }
+
+  const radius = Math.max(8, Math.min(11, Math.min(width, height) * 0.032));
+  drawCropHandle(ctx, clamp(x, radius, width - radius), clamp(y, radius, height - radius), radius);
+  drawCropHandle(
+    ctx,
+    clamp(x + w, radius, width - radius),
+    clamp(y, radius, height - radius),
+    radius,
+  );
+  drawCropHandle(
+    ctx,
+    clamp(x, radius, width - radius),
+    clamp(y + h, radius, height - radius),
+    radius,
+  );
+  drawCropHandle(
+    ctx,
+    clamp(x + w, radius, width - radius),
+    clamp(y + h, radius, height - radius),
+    radius,
+  );
   ctx.restore();
 }
 
-function hitHandle(point: { x: number; y: number }, crop: NormalizedRect): DragMode | null {
-  const tolerance = 0.035;
-  const near = (value: number, target: number) => Math.abs(value - target) <= tolerance;
-  if (near(point.x, crop.x) && near(point.y, crop.y)) return 'nw';
-  if (near(point.x, crop.x + crop.width) && near(point.y, crop.y)) return 'ne';
-  if (near(point.x, crop.x) && near(point.y, crop.y + crop.height)) return 'sw';
-  if (near(point.x, crop.x + crop.width) && near(point.y, crop.y + crop.height)) return 'se';
-  return null;
+function drawCropHandle(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  radius: number,
+) {
+  ctx.beginPath();
+  ctx.arc(x, y, radius + 2, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.7)';
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.fillStyle = '#ffffff';
+  ctx.fill();
+  ctx.strokeStyle = '#0f766e';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+function hitHandle(
+  point: { x: number; y: number },
+  crop: NormalizedRect,
+  width: number,
+  height: number,
+): DragMode | null {
+  const x = point.x * width;
+  const y = point.y * height;
+  const candidates: Array<{ mode: DragMode; x: number; y: number }> = [
+    { mode: 'nw', x: crop.x * width, y: crop.y * height },
+    { mode: 'ne', x: (crop.x + crop.width) * width, y: crop.y * height },
+    { mode: 'sw', x: crop.x * width, y: (crop.y + crop.height) * height },
+    {
+      mode: 'se',
+      x: (crop.x + crop.width) * width,
+      y: (crop.y + crop.height) * height,
+    },
+  ];
+  let closest: { mode: DragMode; x: number; y: number; distance: number } = {
+    ...candidates[0],
+    distance: Number.POSITIVE_INFINITY,
+  };
+  for (const candidate of candidates) {
+    const distance = Math.hypot(candidate.x - x, candidate.y - y);
+    if (distance < closest.distance) closest = { ...candidate, distance };
+  }
+
+  return closest.distance <= 28 ? closest.mode : null;
 }
 
 function applyDrag(

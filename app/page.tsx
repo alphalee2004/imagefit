@@ -17,13 +17,13 @@ export default function Home() {
   return (
     <main className="pb-12">
       <Hero h1={HOME_PAGE.h1} intro={HOME_PAGE.intro} />
-      <div className="mx-auto w-full max-w-5xl px-4 pt-8 sm:px-6">
+      <div className="mx-auto w-full max-w-5xl px-4 pt-5 sm:px-6">
         <section aria-labelledby="home-compressor-heading" data-tool-panel>
           <h2 id="home-compressor-heading" className="text-xl font-semibold text-gray-900">
             {HOME_PAGE.toolHeading}
           </h2>
-          <p className="mt-2 max-w-2xl text-gray-600">{HOME_PAGE.toolIntro}</p>
-          <div className="mt-4">
+          <p className="mt-1.5 max-w-2xl text-base text-gray-600">{HOME_PAGE.toolIntro}</p>
+          <div className="mt-3">
             <ImageOptimizer config={{ defaultTargetBytes: 200 * 1024 }} />
           </div>
         </section>

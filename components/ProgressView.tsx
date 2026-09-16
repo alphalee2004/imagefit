@@ -32,7 +32,7 @@ export default function ProgressView({
         />
       </div>
       <div className="mt-2 flex items-center justify-between gap-3">
-        <p className="text-xs text-gray-500">{stage ? STAGE_LABELS[stage] : 'Optimizing…'}</p>
+        <p className="text-sm text-gray-500">{stage ? STAGE_LABELS[stage] : 'Optimizing…'}</p>
         <button
           type="button"
           onClick={onCancel}

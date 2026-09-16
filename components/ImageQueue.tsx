@@ -22,7 +22,7 @@ export default function ImageQueue({
   const source = previewUrl || image.url;
 
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-3">
+    <div className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-2.5">
       {showPreview ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={source} alt="" className="h-14 w-14 shrink-0 rounded-lg object-cover" />
@@ -33,7 +33,7 @@ export default function ImageQueue({
       )}
       <div className="min-w-0 flex-1">
         <p className="truncate text-base font-medium text-gray-900">{image.name}</p>
-        <p className="mt-0.5 text-xs text-gray-500">
+        <p className="mt-0.5 text-sm text-gray-500">
           {formatBytes(image.size)} · {image.width} × {image.height} ·{' '}
           {formatLabel(image.format)}
         </p>
@@ -44,7 +44,7 @@ export default function ImageQueue({
           onClick={onEdit}
           aria-label="Edit image"
           title="Rotate, flip or crop"
-          className={`rounded-lg p-2 ${
+          className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg ${
             edited
               ? 'bg-teal-50 text-teal-700 hover:bg-teal-100'
               : 'text-gray-400 hover:bg-gray-100 hover:text-gray-700'
@@ -57,7 +57,7 @@ export default function ImageQueue({
         type="button"
         onClick={onRemove}
         aria-label="Remove image"
-        className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+        className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-700"
       >
         <X className="h-4 w-4" />
       </button>

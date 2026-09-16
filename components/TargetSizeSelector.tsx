@@ -26,7 +26,7 @@ export default function TargetSizeSelector({
         <button
           type="button"
           onClick={() => onChange(null)}
-          className={`min-h-11 rounded-lg border px-3 py-2 text-base ${
+          className={`min-h-11 whitespace-normal rounded-lg border px-3 py-2 text-base leading-tight ${
             value === null
               ? 'border-gray-900 bg-gray-900 text-white'
               : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
@@ -39,7 +39,7 @@ export default function TargetSizeSelector({
             key={preset.key}
             type="button"
             onClick={() => onChange(preset.key)}
-            className={`min-h-11 rounded-lg border px-3 py-2 text-base ${
+            className={`min-h-11 whitespace-normal rounded-lg border px-3 py-2 text-base leading-tight ${
               value === preset.key
                 ? 'border-gray-900 bg-gray-900 text-white'
                 : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
@@ -51,7 +51,7 @@ export default function TargetSizeSelector({
         <button
           type="button"
           onClick={() => onChange('custom')}
-          className={`min-h-11 rounded-lg border px-3 py-2 text-base ${
+          className={`min-h-11 whitespace-normal rounded-lg border px-3 py-2 text-base leading-tight ${
             value === 'custom'
               ? 'border-gray-900 bg-gray-900 text-white'
               : 'border-gray-300 bg-white text-gray-700 hover:border-gray-400'
