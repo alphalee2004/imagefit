@@ -5,7 +5,8 @@ Recorded from user feedback and completed on September 16, 2026.
 ## Mobile Header
 
 - [x] Removed the separate `CLEEKE` text and enlarged the logo mark.
-- [x] Rebuilt the header spacing so the logo and navigation no longer collide.
+- [x] Moved the navigation next to the logo and kept all three tools visible on
+  mobile as icon buttons.
 - [x] Kept navigation targets at least 44px and verified no horizontal overflow.
 
 ## Mobile Image Editing
@@ -26,8 +27,8 @@ Recorded from user feedback and completed on September 16, 2026.
 
 ## Local Processing Notice
 
-- [x] Added a prominent local-processing notice directly below the site header.
-- [x] Removed the small header badge that repeated the same message.
+- [x] Kept the `100% local` header badge, with the compact `Local` label on
+  mobile.
 
 ## Mobile Label Wrapping
 
