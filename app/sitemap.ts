@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/seo';
-import { TOOL_PAGES } from '@/lib/toolPages';
+import { BATCH_OPTIMIZER_PATH, TOOL_PAGES } from '@/lib/toolPages';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -13,6 +13,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}/image-tools`,
       changeFrequency: 'weekly',
       priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}${BATCH_OPTIMIZER_PATH}`,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
     ...Object.values(TOOL_PAGES).map((page) => ({
       url: `${SITE_URL}${page.path}`,

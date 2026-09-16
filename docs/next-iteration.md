@@ -7,6 +7,7 @@ Recorded from user feedback and completed on September 16, 2026.
 - [x] Removed the separate `CLEEKE` text and enlarged the logo mark.
 - [x] Moved the navigation next to the logo and kept all three tools visible on
   mobile as icon buttons.
+- [x] Added short text labels beneath the mobile navigation icons.
 - [x] Kept navigation targets at least 44px and verified no horizontal overflow.
 
 ## Mobile Image Editing
@@ -32,7 +33,14 @@ Recorded from user feedback and completed on September 16, 2026.
 
 ## Mobile Label Wrapping
 
-- [x] Added controlled two-line navigation labels on mobile.
-- [x] Allowed control labels to wrap without clipping and kept all touch targets
-  at least 44px.
+- [x] Allowed tool parameter labels to wrap without clipping and kept all
+  interactive targets at least 44px.
 - [x] Verified wrapping does not cause overlap, clipping, or horizontal overflow.
+
+## Batch Processing
+
+- [x] Added a dedicated `/batch-image-optimizer` workflow.
+- [x] Added a 20-image queue with one shared target size and sequential Worker
+  processing.
+- [x] Added failure isolation, per-item retry, cancellation, individual
+  downloads, and ZIP download.

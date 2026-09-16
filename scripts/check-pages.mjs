@@ -10,6 +10,7 @@ mkdirSync(SHOT_DIR, { recursive: true });
 const ROUTES = [
   '/',
   '/image-tools',
+  '/batch-image-optimizer',
   '/compress-image',
   '/compress-image-to-100kb',
   '/compress-image-to-200kb',

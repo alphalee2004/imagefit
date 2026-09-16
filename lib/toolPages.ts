@@ -2,6 +2,8 @@ import type { ToolUiConfig } from './toolConfig';
 
 export const IMAGE_TOOLS_PATH = '/image-tools';
 export const IMAGE_TOOLS_LABEL = 'Image Tools';
+export const BATCH_OPTIMIZER_PATH = '/batch-image-optimizer';
+export const BATCH_OPTIMIZER_LABEL = 'Batch Image Optimizer';
 
 export interface SeoSection {
   heading: string;
@@ -57,6 +59,11 @@ export const ALL_TOOLS: ToolLinkItem[] = [
     href: '/compress-image',
     label: 'Compress Image',
     description: 'Compress JPG, PNG or WebP to a target file size.',
+  },
+  {
+    href: BATCH_OPTIMIZER_PATH,
+    label: BATCH_OPTIMIZER_LABEL,
+    description: 'Compress multiple images to one target size and download them together.',
   },
   {
     href: '/compress-image-to-100kb',
@@ -176,6 +183,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
       },
     ],
     related: relatedFor('/compress-image', [
+      BATCH_OPTIMIZER_PATH,
       '/compress-image-to-100kb',
       '/compress-image-to-200kb',
       '/resize-image',
@@ -260,6 +268,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
     ],
     related: relatedFor('/compress-image-to-100kb', [
       '/compress-image',
+      BATCH_OPTIMIZER_PATH,
       '/compress-image-to-200kb',
       '/resize-image-to-100kb',
       '/image-converter',
@@ -340,6 +349,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
     ],
     related: relatedFor('/compress-image-to-200kb', [
       '/compress-image',
+      BATCH_OPTIMIZER_PATH,
       '/compress-image-to-100kb',
       '/resize-image',
       '/image-converter',
@@ -430,6 +440,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
       },
     ],
     related: relatedFor('/resize-image', [
+      BATCH_OPTIMIZER_PATH,
       '/resize-image-to-100kb',
       '/compress-image',
       '/image-converter',
@@ -512,6 +523,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
       },
     ],
     related: relatedFor('/resize-image-to-100kb', [
+      BATCH_OPTIMIZER_PATH,
       '/compress-image-to-100kb',
       '/resize-image',
       '/compress-image',
@@ -600,6 +612,7 @@ export const TOOL_PAGES: Record<RouteKey, ToolPageData> = {
     ],
     related: relatedFor('/image-converter', [
       '/compress-image',
+      BATCH_OPTIMIZER_PATH,
       '/compress-image-to-100kb',
       '/resize-image',
     ]),
@@ -625,7 +638,7 @@ export const HOME_PAGE: InfoPageData & {
       heading: 'One toolset for everyday image tasks',
       paragraphs: [
         'Cleeke is an online image tools platform built around real file jobs: fitting an image under an upload limit, changing pixel dimensions, or moving between web-friendly formats.',
-        'Each tool is a focused workflow. Pick the task you need, process one file without an account, and download the result to your device.',
+        'Each tool is a focused workflow. Pick the task you need, process one file or a batch without an account, and download the result to your device.',
       ],
     },
     {
@@ -635,6 +648,7 @@ export const HOME_PAGE: InfoPageData & {
       ],
       bullets: [
         'Compress images to 50KB, 100KB, 200KB, 500KB, 1MB or a custom size.',
+        'Process up to 20 files with the same target size and download them as a ZIP.',
         'Resize without upscaling while keeping the aspect ratio.',
         'Convert between JPG, PNG and WebP in the browser.',
       ],
@@ -654,7 +668,7 @@ export const HOME_PAGE: InfoPageData & {
     {
       question: 'Which image tools are available now?',
       answer:
-        'Cleeke currently offers image compression, target-size compression at 100KB and 200KB, resizing, resize-to-100KB, and JPG/PNG/WebP conversion.',
+        'Cleeke currently offers image compression, batch compression, target-size compression at 100KB and 200KB, resizing, resize-to-100KB, and JPG/PNG/WebP conversion.',
     },
     {
       question: 'Which formats are supported?',
@@ -676,7 +690,7 @@ export const IMAGE_TOOLS_HUB: InfoPageData = {
     'Browse Cleeke image tools: target-size image compression, resizing and JPG/PNG/WebP conversion, all in your browser without uploading.',
   h1: 'Image Tools',
   intro:
-    'Compression, resizing and conversion tools for JPG, PNG and WebP images. Choose the workflow that matches the limit you need to satisfy.',
+    'Compression, batch compression, resizing and conversion tools for JPG, PNG and WebP images. Choose the workflow that matches the limit you need to satisfy.',
   sections: [
     {
       heading: 'Choose the tool that matches the task',
@@ -706,7 +720,7 @@ export const IMAGE_TOOLS_HUB: InfoPageData = {
     {
       question: 'What can Cleeke do with images right now?',
       answer:
-        'Cleeke can compress JPG, PNG and WebP to a target size, resize them by max dimensions, and convert them between JPG, PNG and WebP.',
+        'Cleeke can compress one or many JPG, PNG and WebP files to a target size, resize them by max dimensions, and convert them between JPG, PNG and WebP.',
     },
     {
       question: 'Do I need to create an account?',

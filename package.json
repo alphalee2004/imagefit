@@ -1,7 +1,7 @@
 {
   "name": "cleeke",
   "private": true,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,6 +11,7 @@
     "test:e2e": "node scripts/e2e.mjs"
   },
   "dependencies": {
+    "fflate": "^0.8.3",
     "lucide-react": "^0.469.0",
     "next": "^15.5.0",
     "react": "^19.1.0",

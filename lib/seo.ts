@@ -68,6 +68,7 @@ export function softwareApplicationSchema() {
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     featureList: [
       'Target file size compression',
+      'Batch image compression',
       'Image resizing',
       'JPG, PNG and WebP conversion',
       '100% browser-based processing',
