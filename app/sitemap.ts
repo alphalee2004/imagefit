@@ -5,7 +5,7 @@ import { BATCH_OPTIMIZER_PATH, TOOL_PAGES } from '@/lib/toolPages';
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: `${SITE_URL}/`,
+      url: SITE_URL,
       changeFrequency: 'weekly',
       priority: 1,
     },

@@ -25,7 +25,7 @@ const browser = await chromium.launch({ executablePath: CHROME_PATH, headless: t
 const results = [];
 
 function sitemapLocForRoute(route) {
-  return route === '/' ? `${CANONICAL_ORIGIN}/` : `${CANONICAL_ORIGIN}${route}`;
+  return route === '/' ? CANONICAL_ORIGIN : `${CANONICAL_ORIGIN}${route}`;
 }
 
 function textWords(text) {
@@ -106,12 +106,14 @@ try {
     });
 
     const canonicalHostOk = Boolean(canonical) && canonical.startsWith(CANONICAL_ORIGIN);
+    const expectedCanonical = route === '/' ? CANONICAL_ORIGIN : `${CANONICAL_ORIGIN}${route}`;
+    const canonicalMatches = canonical === expectedCanonical;
     const noindex = Boolean(robots && robots.toLowerCase().includes('noindex'));
     const isLegalPage = route === '/privacy' || route === '/terms';
     const pageOk =
       h1Count === 1 &&
       Boolean(description) &&
-      canonicalHostOk &&
+      canonicalMatches &&
       Boolean(ogUrl) &&
       Boolean(ogImage) &&
       Boolean(twitterCard) &&
@@ -151,6 +153,7 @@ try {
       internalLinks,
       noindex,
       canonicalHostOk,
+      canonicalMatches,
       bodyWidth,
       viewportWidth,
       ok: pageOk && bodyWidth <= viewportWidth,
