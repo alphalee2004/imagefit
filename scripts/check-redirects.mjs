@@ -92,8 +92,7 @@ const expectedVariants = [];
 if (CHECK_VARIANTS) {
   for (const sitemapUrl of sitemapUrls) {
     const url = new URL(sitemapUrl);
-    const apexUrl = new URL(sitemapUrl);
-    apexUrl.origin = APEX_ORIGIN;
+    const apexUrl = new URL(`${url.pathname}${url.search}`, APEX_ORIGIN);
     const trailingSlashUrl = new URL(sitemapUrl);
     trailingSlashUrl.pathname = `${url.pathname}/`;
 
